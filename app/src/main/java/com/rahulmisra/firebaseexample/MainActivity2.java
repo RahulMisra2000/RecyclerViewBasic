@@ -22,12 +22,13 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class MainActivity2 extends AppCompatActivity implements ExampleRecyclerViewAdapter.I1{
+                                                                        // MEMBER FIELDS   m
+    RecyclerView mRecyclerView;                                         // RecyclerView
+    RecyclerView.LayoutManager lManager;                                // LayoutManager
+    ExampleRecyclerViewAdapter mRecyclerViewAdapter;                    // Adapter
+    ArrayList<Customer> mData = new ArrayList<>();                      // Data
 
-    RecyclerView mRecyclerView;
-    RecyclerView.LayoutManager lManager;
-    ExampleRecyclerViewAdapter mRecyclerViewAdapter;
-    ArrayList<Customer> mData = new ArrayList<>();
-
+    // This code's Github is here: https://github.com/RahulMisra2000/RecyclerViewBasic.git
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,7 +36,7 @@ public class MainActivity2 extends AppCompatActivity implements ExampleRecyclerV
 
         buildRecyclerView();
 
-        /* C of CRUD        - Clicking the button does C of CRUD*/
+        /* C of CRUD        - Clicking the FAB button does C of CRUD*/
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -44,8 +45,8 @@ public class MainActivity2 extends AppCompatActivity implements ExampleRecyclerV
                         .setAction("Action", null).show();
                 */
                 mData.add(new Customer(R.drawable.ic_2, ((Integer) (new Random().nextInt(100))).toString(),"New"));
-                mRecyclerViewAdapter.notifyItemInserted(mData.size()-1);
-                mRecyclerView.scrollToPosition(mRecyclerViewAdapter.getItemCount() - 1);
+                mRecyclerViewAdapter.notifyItemInserted(mData.size()-1);            // Insert the data into the last position
+                mRecyclerView.scrollToPosition(mRecyclerViewAdapter.getItemCount() - 1);    // And then scroll to it
             }
         });
         /* C of CRUD */
